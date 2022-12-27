@@ -1,25 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { Incrementer, Decrementer, Reset } from './Config/action';
 function App() {
+  const num = useSelector(data => data.num);
+  const dispatch = useDispatch();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>{num}</div>
+      <div>
+        <button onClick={() => dispatch(Incrementer())}>Incrementer</button>
+        <button onClick={() => dispatch(Decrementer())}>Decrementer</button>
+        <button onClick={() => dispatch(Reset())}>Reset</button>
+      </div>
     </div>
   );
 }
-
 export default App;
